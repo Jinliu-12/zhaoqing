@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赵青的网页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #0a0e29;
+            color: #e0e0ff;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 4px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 4px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 40px 30px 30px;
+            position: relative;
+        }
+        
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(100, 200, 255, 0.4);
+            object-fit: cover;
+            box-shadow: 0 5px 20px rgba(100, 150, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .profile-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #8a2be2, #1e90ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b0b0ff;
+        }
+        
+        .location-section {
+            text-align: right;
+            background: rgba(16, 18, 47, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .location-section h3 {
+            color: #7b68ee;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .location-section p {
+            color: #d0d0ff;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: rgba(16, 18, 47, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        h2 {
+            color: #7b68ee;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(123, 104, 238, 0.3);
+            font-size: 1.8rem;
+        }
+        
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #d0d0ff;
+        }
+        
+        /* 个性标签组样式 */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #ff6bcb 0%, #ffa647 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 203, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 203, 0.5);
+        }
+        
+        .tag i {
+            font-size: 0.8rem;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .skill {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 117, 252, 0.3);
+        }
+        
+        .skill:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 117, 252, 0.5);
+        }
+        
+        .hobbies-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .hobby {
+            flex: 1;
+            min-width: 180px;
+            background: rgba(30, 30, 70, 0.6);
+            border-radius: 15px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(123, 104, 238, 0.2);
+        }
+        
+        .hobby:hover {
+            background: rgba(40, 40, 90, 0.8);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hobby-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .hobby h3 {
+            color: #7b68ee;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .hobby p {
+            color: #d0d0ff;
+            font-size: 0.95rem;
+        }
+        
+        .singer-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #64c8ff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .singer-link:hover {
+            color: #ff6bcb;
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #88aaff;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .location-section {
+                text-align: center;
+                width: 100%;
+            }
+            
+            .location-section p {
+                justify-content: center;
+            }
+            
+            .hobbies-container {
+                flex-direction: column;
+            }
+            
+            .hobby {
+                min-width: 100%;
+            }
+            
+            .tags-container {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <header>
+            <div class="profile-section">
+                <img src="https://raw.githubusercontent.com/Jinliu-12/zhaoqing/6ecba7deab95ebcc6f570f3aa07a4e397bbba707/avatar.png" alt="头像" class="avatar">
+                <div class="profile-info">
+                    <h1>赵青</h1>
+                    <p class="subtitle">普通大学生 | 文化产业管理专业 | 兴趣广泛</p>
+                </div>
+            </div>
+            
+            <div class="location-section">
+                <h3>籍贯与位置</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 贵州安顺</p>
+                <p><i class="fas fa-graduation-cap"></i> 福建武夷学院</p>
+            </div>
+        </header>
+        
+        <div class="cards-container">
+            <section class="card">
+                <h2>个人简介</h2>
+                
+                <!-- 新增的个性标签组 -->
+                <div class="tags-container">
+                    <div class="tag"><i class="fas fa-moon"></i> 夜猫子</div>
+                    <div class="tag"><i class="fas fa-couch"></i> 懒癌晚期</div>
+                    <div class="tag"><i class="fas fa-gamepad"></i> 游戏爱好者</div>
+                    <div class="tag"><i class="fas fa-music"></i> 音乐发烧友</div>
+                    <div class="tag"><i class="fas fa-utensils"></i> 美食探索家</div>
+                    <div class="tag"><i class="fas fa-film"></i> 追剧达人</div>
+                    <div class="tag"><i class="fas fa-cat"></i> 铲屎官</div>
+                    <div class="tag"><i class="fas fa-coffee"></i> 咖啡依赖者</div>
+                </div>
+                
+                <p class="intro-text">
+                    我是普通大学生一枚，专业是文化产业管理。
+                </p>
+                
+            </section>
+            
+            <section class="card">
+                <h2>兴趣爱好</h2>
+                <div class="hobbies-container">
+                    <div class="hobby">
+                        <span class="hobby-icon">🏀</span>
+                        <h3>打球</h3>
+                        <p>热爱篮球运动，享受团队协作的乐趣</p>
+                    </div>
+                    <div class="hobby">
+                        <span class="hobby-icon">💻</span>
+                        <h3>电脑</h3>
+                        <p>对计算机技术和编程充满热情</p>
+                    </div>
+                    <div class="hobby">
+                        <span class="hobby-icon">🎵</span>
+                        <h3>音乐</h3>
+                        <p>喜欢听音乐，特别是古风歌曲</p>
+                        <a href="https://www.baidu.com/s?wd=银临" class="singer-link" target="_blank">喜欢的歌手：银临</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>© 2023 个人介绍页面 | 使用HTML和CSS构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 创建星空背景
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // 随机大小
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // 随机位置
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // 页面加载完成后创建星空
+        window.addEventListener('DOMContentLoaded', createStars);
+    </script>
+</body>
+</html>
